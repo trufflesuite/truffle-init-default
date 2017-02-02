@@ -1,4 +1,5 @@
 {
+  "docs_url": "http://truffleframework.com/docs",
   "ignore": [
     "README.md",
     ".gitignore"
