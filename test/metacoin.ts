@@ -2,7 +2,7 @@ const MetaCoin = artifacts.require("MetaCoin");
 
 contract('MetaCoin', accounts => {
   it("should put 10000 MetaCoin in the first account", () => MetaCoin.deployed().then(instance => instance.getBalance.call(accounts[0])).then(balance => {
-    expect(balance.valueOf()).to.be.deep.eq(10000);
+    expect(balance.toNumber()).to.be.deep.eq(10000);
   }));
   it("should call a function that depends on a linked library", () => {
     let meta;
