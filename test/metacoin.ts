@@ -1,6 +1,10 @@
-const MetaCoin = artifacts.require("MetaCoin");
+let MetaCoin = artifacts.require("MetaCoin");
 
 contract('MetaCoin', accounts => {
+  before("new instance of MetaCoin", async () => {
+    MetaCoin = await MetaCoin.new();
+  });
+  
   it("should put 10000 MetaCoin in the first account", () => MetaCoin.deployed().then(instance => instance.getBalance.call(accounts[0])).then(balance => {
     expect(balance.toNumber()).to.be.deep.eq(10000);
   }));
