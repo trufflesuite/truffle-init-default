@@ -5,7 +5,7 @@ contract('MetaCoin', accounts => {
     MetaCoin = await MetaCoin.new();
   });
   
-  it("should put 10000 MetaCoin in the first account", () => MetaCoin.deployed().then(instance => instance.getBalance.call(accounts[0])).then(balance => {
+  it("should put 10000 MetaCoin in the first account", () => MetaCoin.then(instance => instance.getBalance.call(accounts[0])).then(balance => {
     expect(balance.toNumber()).to.be.deep.eq(10000);
   }));
   it("should call a function that depends on a linked library", () => {
@@ -13,7 +13,7 @@ contract('MetaCoin', accounts => {
     let metaCoinBalance;
     let metaCoinEthBalance;
 
-    return MetaCoin.deployed().then(instance => {
+    return MetaCoin.then(instance => {
       meta = instance;
       return meta.getBalance.call(accounts[0]);
     }).then(outCoinBalance => {
@@ -39,7 +39,7 @@ contract('MetaCoin', accounts => {
 
     const amount = 10;
 
-    return MetaCoin.deployed().then(instance => {
+    return MetaCoin.then(instance => {
       meta = instance;
       return meta.getBalance.call(account_one);
     }).then(balance => {
