@@ -48,7 +48,9 @@ contract('MetaCoin', function(accounts) {
     }).then(function(balance) {
       account_two_starting_balance = parseInt(balance);
       return meta.sendCoin(account_two, amount, {from: account_one});
-    }).then(function() {
+    }).then(function(result) {
+      assert.equal(result.logs.length, 1, "Expected one log event")
+      assert.equal(result.logs[0].event, "Transfer", "Expected event 'Transfer'")
       return meta.getBalance.call(account_one);
     }).then(function(balance) {
       account_one_ending_balance = parseInt(balance);
